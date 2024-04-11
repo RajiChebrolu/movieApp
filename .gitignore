@@ -1,6 +1,2 @@
-*pyc
 env/
-.vscode/
-movie/__pycache__/
-movie/migrations/__pycache__/
-movieApp/__pycache__/
+*/*.pyc
