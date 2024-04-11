@@ -24,9 +24,15 @@ class Movie(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=1000)
     image = models.ImageField(upload_to='movies', default='default_image.jpg')
+<<<<<<< HEAD
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=10)
     language = models.CharField(choices=LANGUAGE_CHOICES, max_length=2)
     status = models.CharField(choices=STATUS_CHOICES, max_length=2)
+=======
+    category = models.CharField(choices=CATEGORY_CHOICES, max_length=50)
+    language = models.CharField(choices=LANGUAGE_CHOICES, max_length=5)
+    status = models.CharField(choices=STATUS_CHOICES, max_length=5)
+>>>>>>> fb08546 (Changes in the following pages,)
     production_of_year = models.DateField()
     views_count = models.IntegerField(default=0)
     cast = models.CharField(max_length=100)
