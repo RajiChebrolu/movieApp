@@ -9,18 +9,26 @@ from .models import Movie, MovieLinks
 class MovieList(ListView):
     model = Movie
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     template_name='movie/movie_list.html'
 >>>>>>> fb08546 (Changes in the following pages,)
+=======
+    template_name='movie/movie_list.html'
+>>>>>>> 68e5e43 (UPDATE files)
     paginate_by =1
 
 
 class MovieDetail(DetailView):
     model = Movie
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     template_name='movie/movie_detail.html'
 >>>>>>> fb08546 (Changes in the following pages,)
+=======
+    template_name='movie/movie_detail.html'
+>>>>>>> 68e5e43 (UPDATE files)
 
     def get_object(self):
         object = super(MovieDetail, self).get_object()
@@ -36,7 +44,9 @@ class MovieDetail(DetailView):
 
 class MovieCategory(ListView):
     model = Movie
-    paginate_by =1
+    paginate_by =3
+    # changed 1 to 3 and added this line
+    template_name = 'movie/movie_category_list.html'
 
     def get_queryset(self):
         category = self.kwargs['category']
@@ -48,8 +58,11 @@ class MovieCategory(ListView):
         context['movie_category'] = self.category
         return context
 <<<<<<< HEAD
+<<<<<<< HEAD
         
 =======
+=======
+>>>>>>> 68e5e43 (UPDATE files)
         
         
 from django.shortcuts import render
@@ -97,4 +110,7 @@ from .models import Movie, MovieLinks
 
 
 
+<<<<<<< HEAD
 >>>>>>> fb08546 (Changes in the following pages,)
+=======
+>>>>>>> 68e5e43 (UPDATE files)
