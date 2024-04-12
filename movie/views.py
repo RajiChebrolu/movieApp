@@ -8,27 +8,21 @@ from .models import Movie, MovieLinks
 # Create your views here.
 class MovieList(ListView):
     model = Movie
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
     template_name='movie/movie_list.html'
->>>>>>> fb08546 (Changes in the following pages,)
-=======
+
     template_name='movie/movie_list.html'
->>>>>>> 68e5e43 (UPDATE files)
+
     paginate_by =1
 
 
 class MovieDetail(DetailView):
     model = Movie
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
     template_name='movie/movie_detail.html'
->>>>>>> fb08546 (Changes in the following pages,)
-=======
+
     template_name='movie/movie_detail.html'
->>>>>>> 68e5e43 (UPDATE files)
+
 
     def get_object(self):
         object = super(MovieDetail, self).get_object()
@@ -57,13 +51,7 @@ class MovieCategory(ListView):
         context = super(MovieCategory, self).get_context_data(**kwargs)
         context['movie_category'] = self.category
         return context
-<<<<<<< HEAD
-<<<<<<< HEAD
-        
-=======
-=======
->>>>>>> 68e5e43 (UPDATE files)
-        
+
         
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
@@ -110,7 +98,3 @@ from .models import Movie, MovieLinks
 
 
 
-<<<<<<< HEAD
->>>>>>> fb08546 (Changes in the following pages,)
-=======
->>>>>>> 68e5e43 (UPDATE files)
