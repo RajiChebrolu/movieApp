@@ -13,7 +13,7 @@ class MovieList(ListView):
 
     template_name='movie/movie_list.html'
 
-    paginate_by =1
+    paginate_by =2
 
 
 class MovieDetail(DetailView):
