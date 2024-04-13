@@ -8,11 +8,21 @@ from .models import Movie, MovieLinks
 # Create your views here.
 class MovieList(ListView):
     model = Movie
+
+    template_name='movie/movie_list.html'
+
+    template_name='movie/movie_list.html'
+
     paginate_by =1
 
 
 class MovieDetail(DetailView):
     model = Movie
+
+    template_name='movie/movie_detail.html'
+
+    template_name='movie/movie_detail.html'
+
 
     def get_object(self):
         object = super(MovieDetail, self).get_object()
@@ -28,7 +38,9 @@ class MovieDetail(DetailView):
 
 class MovieCategory(ListView):
     model = Movie
-    paginate_by =1
+    paginate_by =3
+    # changed 1 to 3 and added this line
+    template_name = 'movie/movie_category_list.html'
 
     def get_queryset(self):
         category = self.kwargs['category']
@@ -39,4 +51,50 @@ class MovieCategory(ListView):
         context = super(MovieCategory, self).get_context_data(**kwargs)
         context['movie_category'] = self.category
         return context
+
         
+from django.shortcuts import render
+from django.views.generic import ListView, DetailView
+from .models import Movie, MovieLinks
+
+
+
+
+
+
+
+
+#   OPTION 2
+# Createn an other option, but this one did't work very well, keept the first
+# and added the paths to the templates 
+
+
+# from django.shortcuts import render
+
+# # from .views import MovieList, MovieDetail
+# from django.views.generic import ListView, DetailView
+# from .models import Movie
+# from django.contrib.auth.mixins import LoginRequiredMixin
+
+
+# class MovieListView( ListView):
+#     model = Movie
+#     template_name = 'movie/movie_list.html'  # template
+#     # login_url = '/accounts/login/' 
+    
+
+# class MovieDetailView(DetailView):
+#     model = Movie
+#     template_name = 'movie/movie_detail.html'  #  template
+
+
+# class MovieLinksListView(ListView):
+#     model = MovieLinks
+#     template_name = 'movie/movie_links_list.html' 
+
+# class MovieLinksDetailView(DetailView):
+#     model = MovieLinks
+#     template_name = 'movie/movie_links_detail.html'  
+
+
+
