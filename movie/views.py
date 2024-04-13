@@ -1,63 +1,51 @@
-from typing import Any
-from django.db.models.base import Model as Model
-from django.db.models.query import QuerySet
-from django.shortcuts import render
 from django.views.generic import ListView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Movie, MovieLinks
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+from django.contrib.auth.forms import UserCreationForm
 
-# Create your views here.
+
+class SignUpView(CreateView):
+    form_class = UserCreationForm
+    template_name = 'registration/signup.html'
+    success_url = reverse_lazy('movies:login') 
+
 class MovieList(ListView):
     model = Movie
+    template_name = 'movie/movie_list.html'
+    paginate_by = 3
 
-    template_name='movie/movie_list.html'
-
-    template_name='movie/movie_list.html'
-
-    paginate_by =2
-
-
-class MovieDetail(DetailView):
+class MovieDetail(LoginRequiredMixin, DetailView):
     model = Movie
+    template_name = 'movie/movie_detail.html'
+    login_url = '/accounts/login/'  
+    redirect_field_name = 'movie/movie_detail.html'
 
-    template_name='movie/movie_detail.html'
-
-    template_name='movie/movie_detail.html'
-
-
-    def get_object(self):
-        object = super(MovieDetail, self).get_object()
-        object.views_count +=1
-        object.save()
-        return object
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset=queryset)
+        obj.views_count += 1
+        obj.save()
+        return obj
 
     def get_context_data(self, **kwargs):
-        context = super(MovieDetail, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['links'] = MovieLinks.objects.filter(movie=self.get_object())
         return context
 
-
-class MovieCategory(ListView):
+class MovieCategory(LoginRequiredMixin, ListView):
     model = Movie
-    paginate_by =3
-    # changed 1 to 3 and added this line
+    paginate_by = 4
     template_name = 'movie/movie_category_list.html'
 
     def get_queryset(self):
-        category = self.kwargs['category']
+        self.category = self.kwargs['category']
         return Movie.objects.filter(category=self.category)
 
-  
-    def get_context_data(self, **kwargs): 
-        context = super(MovieCategory, self).get_context_data(**kwargs)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         context['movie_category'] = self.category
         return context
-
-        
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView
-from .models import Movie, MovieLinks
-
-
 
 
 

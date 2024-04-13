@@ -1,30 +1,35 @@
-
-<h3>Welcome in Movie Detail.</h3>
-
-
-
 {% extends "base.html" %}
 {% block title %}
     Movie Details - {{ movie.title }}
 {% endblock %}
 
 {% block content %}
+<div class="container mt-4">
     <div class="row">
-        <div class="col-md-6 mx-auto">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h1 class="card-title">{{ movie.title }}</h1>
-                    <img src="{{ movie.image.url }}" class="card-img-top mb-3" alt="{{ movie.title }}">
-                    <hr>
-                    <p class="card-text">Description: {{ movie.description }}</p>
-                    <p class="card-text">Category: {{ movie.get_category_display }}</p>
-                    <p class="card-text">Language: {{ movie.get_language_display }}</p>
-                    <p class="card-text">Status: {{ movie.get_status_display }}</p>
-                    <p class="card-text">Production Year: {{ movie.production_of_year }}</p>
-                    <p class="card-text">Views Count: {{ movie.views_count }}</p>
+        <div class="col-lg-10 mx-auto">
+            <!-- Card with black background -->
+            <div class="card mb-4 bg-dark text-white">
+                <div class="row g-0">
+                    <!-- Image column -->
+                    <div class="col-md-6">
+                        <img src="{{ movie.image.url }}" class="img-fluid w-100" style="height: 100%; object-fit: cover;" alt="{{ movie.title }}">
                     </div>
+                    <!-- Text content column -->
+                    <div class="col-md-6 d-flex align-items-center">
+                        <div class="card-body">
+                            <h1 class="card-title">{{ movie.title }}</h1>
+                            <hr>
+                            <p class="card-text"><strong>Description:</strong> {{ movie.description }}</p>
+                            <p class="card-text"><strong>Category:</strong> {{ movie.get_category_display }}</p>
+                            <p class="card-text"><strong>Language:</strong> {{ movie.get_language_display }}</p>
+                            <p class="card-text"><strong>Status:</strong> {{ movie.get_status_display }}</p>
+                            <p class="card-text"><strong>Production Year:</strong> {{ movie.production_of_year }}</p>
+                            <p class="card-text"><strong>Views Count:</strong> {{ movie.views_count }}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
-
