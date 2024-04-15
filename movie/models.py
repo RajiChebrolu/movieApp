@@ -25,12 +25,14 @@ class Movie(models.Model):
     description = models.TextField(max_length=1000)
     image = models.ImageField(upload_to='movies', default='default_image.jpg')
 
+
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=10)
     language = models.CharField(choices=LANGUAGE_CHOICES, max_length=10)
     status = models.CharField(choices=STATUS_CHOICES, max_length=2) 
     production_of_year = models.DateField()
     views_count = models.IntegerField(default=0)
     cast = models.CharField(max_length=100)
+    
     
 
 
