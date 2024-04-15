@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <ul>
+    {% for year in year_list %}
+        <li><a href="{% url 'movie_archive_year' year=year %}">{{ year }}</a></li>
+    {% endfor %}
+    </ul>
+
+    <div>
+        <h3 style="margin-top: 150px;">All Movies Released in {{ year }}</h3>
+        {% if no_movies_message %}
+            <p>No movies available</p>
+        {% else %}
+            {% for movie in object_list %}
+            <li class="movie-item">            
+                <img src="{{movie.image.url}}" alt="{{movie.title}}" class="movie-image"/> 
+                <a href="movie_detail.html" src="{{movie.image.url}}" class="movie-title">{{ movie.title }}</a>           
+            </li>                
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

@@ -9,10 +9,10 @@ CATEGORY_CHOICES = (
 )
 
 LANGUAGE_CHOICES =(
-    ('EN', 'ENGLISH'),
-    ('KR', 'KOREAN'),
-    ('HI', 'HINDI'),
-    ('SP', 'SPANISh'),
+    ('english', 'ENGLISH'),
+    ('korean', 'KOREAN'),
+    ('hindi', 'HINDI'),
+    ('spanish', 'SPANISh'),
 )
 
 STATUS_CHOICES = (
@@ -24,12 +24,14 @@ class Movie(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=1000)
     image = models.ImageField(upload_to='movies', default='default_image.jpg')
+
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=10)
-    language = models.CharField(choices=LANGUAGE_CHOICES, max_length=2)
-    status = models.CharField(choices=STATUS_CHOICES, max_length=2)
+    language = models.CharField(choices=LANGUAGE_CHOICES, max_length=10)
+    status = models.CharField(choices=STATUS_CHOICES, max_length=2) 
     production_of_year = models.DateField()
     views_count = models.IntegerField(default=0)
     cast = models.CharField(max_length=100)
+    
 
 
     def __str__(self) -> str:

@@ -1,1 +1,58 @@
-<h3>Welcome in Movie List.</h3>
+{% extends "base.html" %}
+{% block title %}Library - Movie List{% endblock %}
+
+{% block content %}
+<h1 class="mb-4 text-center" style="margin-top: 100px;">Movie List</h1>
+<div class="container">
+    <div class="row">
+        {% for movie in object_list %}
+     
+        <div class="col-12 col-sm-6 col-md-4 mb-4">
+            <div class="card bg-dark text-white h-100" style="border-radius: 10px;">
+                {% if movie.image %}
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <img src="{{ movie.image.url }}" class="img-fluid card-img-top" alt="{{ movie.title }}">
+
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ movie.title }}</h5>
+                            <p class="card-text">{{ movie.description|truncatewords:20 }}</p>
+                            <a href="{% url 'movies:movie_detail' movie.pk %}" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ movie.title }}</h5>
+                    <p class="card-text">{{ movie.description|truncatewords:20 }}</p>
+                    <a href="{% url 'movies:movie_detail' movie.pk %}" class="btn btn-warning">View Details</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p class="text-white">No movies available.</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="d-flex justify-content-center mt-4">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page=1">&laquo; First</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+                {% endif %}
+                <li class="page-item disabled"><a class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a></li>
+                {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</div>
+{% endblock %}
