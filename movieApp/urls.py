@@ -39,5 +39,6 @@ urlpatterns = [
     path('', include('movie.urls', namespace='movies')),
     # imported accounts for login into movie app
     path('accounts/',include('django.contrib.auth.urls')),
-    path('accounts/', include('accounts.urls'))
+    path('accounts/', include('accounts.urls')),
+    path('contact/', include('contact.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
