@@ -7,6 +7,11 @@ from django.views.generic import CreateView
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.dates import YearArchiveView
 
+# # links for contact page:
+# from django.shortcuts import render, redirect
+# from django.core.mail import send_mail
+# from .forms import ContactForm
+
 class HomeView(ListView):
     model = Movie
     template_name = 'movie/home.html'
@@ -23,18 +28,17 @@ class HomeView(ListView):
 class SignUpView(CreateView):
     form_class = UserCreationForm
     template_name = 'registration/signup.html'
-    success_url = reverse_lazy('movies:login') 
+    success_url = reverse_lazy('movies:detail') 
 
 class MovieList(ListView):
     model = Movie
     template_name = 'movie/movie_list.html'
     paginate_by = 3
 
-class MovieDetail(LoginRequiredMixin, DetailView):
+class MovieDetail(DetailView):
     model = Movie
     template_name = 'movie/movie_detail.html'
-    login_url = '/accounts/login/'  
-    redirect_field_name = 'movie/movie_detail.html'
+   
 
     def get_object(self, queryset=None):
         obj = super().get_object(queryset=queryset)
@@ -42,9 +46,11 @@ class MovieDetail(LoginRequiredMixin, DetailView):
         obj.save()
         return obj
 
+   
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['links'] = MovieLinks.objects.filter(movie=self.get_object())
+        movie = self.get_object()
+        context['links'] = MovieLinks.objects.filter(movie=movie)
         return context
 
 class MovieCategory(ListView):
@@ -84,38 +90,23 @@ class MovieYear(YearArchiveView):
 
 
 
+# adding contact:
 
-#   OPTION 2
-# Createn an other option, but this one did't work very well, keept the first
-# and added the paths to the templates 
+# def contact_view(request):
+#     if request.method == 'POST':
+#         form = ContactForm(request.POST)
+#         if form.is_valid():
+#             # Process the data in form.cleaned_data
+#             # For example, send an email
+#             send_mail(
+#                 f'Message from {form.cleaned_data["name"]}',
+#                 form.cleaned_data['message'],
+#                 form.cleaned_data['email'],
+#                 ['your_email@example.com'], 
+#                 fail_silently=False,
+#             )
+#             return redirect('success_page') 
+#     else:
+#         form = ContactForm()
 
-
-# from django.shortcuts import render
-
-# # from .views import MovieList, MovieDetail
-# from django.views.generic import ListView, DetailView
-# from .models import Movie
-# from django.contrib.auth.mixins import LoginRequiredMixin
-
-
-# class MovieListView( ListView):
-#     model = Movie
-#     template_name = 'movie/movie_list.html'  # template
-#     # login_url = '/accounts/login/' 
-    
-
-# class MovieDetailView(DetailView):
-#     model = Movie
-#     template_name = 'movie/movie_detail.html'  #  template
-
-
-# class MovieLinksListView(ListView):
-#     model = MovieLinks
-#     template_name = 'movie/movie_links_list.html' 
-
-# class MovieLinksDetailView(DetailView):
-#     model = MovieLinks
-#     template_name = 'movie/movie_links_detail.html'  
-
-
-
+#     return render(request, 'contact.html', {'form': form})
