@@ -24,8 +24,8 @@
                     </div>
                 </div>
                 {% else %}
-                <div class="card-body">
-                    <h5 class="card-title">{{ movie.title }}</h5>
+                <div class="card-body ">
+                    <h5 class="card-title ">{{ movie.title }}</h5>
                     <p class="card-text">{{ movie.description|truncatewords:20 }}</p>
                     <a href="{% url 'movies:movie_detail' movie.pk %}" class="btn btn-warning">View Details</a>
                 </div>
