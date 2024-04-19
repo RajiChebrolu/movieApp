@@ -1,25 +1,4 @@
 {% extends "base.html" %}
-<<<<<<< HEAD
-
-
-{% block title %}Library - Movie List{% endblock %}
-
-{% block content %}
-<h1 class="mb-4 text-center">Movie List</h1>  <!-- Added text-center for better alignment -->
-<div class="container">
-    <div class="row">
-        {% comment %} Rows for each card {% endcomment %}
-        {% for movie in object_list %}
-        <div class="col-lg-4 col-md-6 col-lg-6 mb-4 "> <!-- Ensure responsiveness across different screen sizes -->
-            <div class="card bg-dark text-white mt-4 mb-2 h-100" style="max-width: 100%; border-radius: 10px; overflow: hidden;">
-              {% if movie.image %}
-               {% comment %} <img src="{{ % if movie.image  }}" class="card-img-top mb-3"> {% endcomment %}
-                <div class="row g-0">
-                    <div class="col-md-4 mt-4">
-                        <img src="{{ movie.image.url }}" class="img-fluid rounded-start" alt="{{ movie.title }}">
-                    </div>
-                    <div class="col-md-8">
-=======
 {% block title %}Library - Movie List{% endblock %}
 
 {% block content %}
@@ -37,7 +16,6 @@
 
                     </div>
                     <div class="col-md-12">
->>>>>>> raji/release
                         <div class="card-body">
                             <h5 class="card-title">{{ movie.title }}</h5>
                             <p class="card-text">{{ movie.description|truncatewords:20 }}</p>
@@ -46,19 +24,8 @@
                     </div>
                 </div>
                 {% else %}
-<<<<<<< HEAD
-<<<<<<< HEAD
-                {% comment %} content  {% endcomment %}
-                <div class="card-body mb-2">
-                    <h5 class="card-title">{{ movie.title }}</h5>
-=======
                 <div class="card-body ">
                     <h5 class="card-title ">{{ movie.title }}</h5>
->>>>>>> raji/release
-=======
-                <div class="card-body ">
-                    <h5 class="card-title ">{{ movie.title }}</h5>
->>>>>>> refs/remotes/origin/main
                     <p class="card-text">{{ movie.description|truncatewords:20 }}</p>
                     <a href="{% url 'movies:movie_detail' movie.pk %}" class="btn btn-warning">View Details</a>
                 </div>
@@ -67,19 +34,11 @@
         </div>
         {% empty %}
         <div class="col-12">
-<<<<<<< HEAD
-            <p class="text-white">No movies available.</p>  <!-- Added text color for visibility -->
-=======
             <p class="text-white">No movies available.</p>
->>>>>>> raji/release
         </div>
         {% endfor %}
     </div>
 
-<<<<<<< HEAD
-    <!-- Pagination Controls, centered below the movie list -->
-=======
->>>>>>> raji/release
     <div class="d-flex justify-content-center mt-4">
         <nav aria-label="Page navigation example">
             <ul class="pagination">

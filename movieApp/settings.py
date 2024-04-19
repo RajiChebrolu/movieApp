@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'movie',
     'accounts',
     'contact',
-
 ]
 
 MIDDLEWARE = [
@@ -144,6 +143,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 DEFAULT_FROM_EMAIL = "aotearoacinemasunofficial@gmail.com"
 NOTIFY_EMAIL = "aotearoacinemasunofficial@gmail.com"
-
-NOTIFY_EMAIL = "aotearoacinemasunofficial@gmail.com"
-
