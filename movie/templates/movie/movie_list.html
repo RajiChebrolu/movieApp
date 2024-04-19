@@ -47,6 +47,7 @@
                 </div>
                 {% else %}
 <<<<<<< HEAD
+<<<<<<< HEAD
                 {% comment %} content  {% endcomment %}
                 <div class="card-body mb-2">
                     <h5 class="card-title">{{ movie.title }}</h5>
@@ -54,6 +55,10 @@
                 <div class="card-body ">
                     <h5 class="card-title ">{{ movie.title }}</h5>
 >>>>>>> raji/release
+=======
+                <div class="card-body ">
+                    <h5 class="card-title ">{{ movie.title }}</h5>
+>>>>>>> refs/remotes/origin/main
                     <p class="card-text">{{ movie.description|truncatewords:20 }}</p>
                     <a href="{% url 'movies:movie_detail' movie.pk %}" class="btn btn-warning">View Details</a>
                 </div>

@@ -145,3 +145,27 @@ class MovieYear(YearArchiveView):
     print(queryset)
 
 
+<<<<<<< HEAD
+=======
+
+# adding contact:
+
+# def contact_view(request):
+#     if request.method == 'POST':
+#         form = ContactForm(request.POST)
+#         if form.is_valid():
+#             # Process the data in form.cleaned_data
+#             # For example, send an email
+#             send_mail(
+#                 f'Message from {form.cleaned_data["name"]}',
+#                 form.cleaned_data['message'],
+#                 form.cleaned_data['email'],
+#                 ['your_email@example.com'], 
+#                 fail_silently=False,
+#             )
+#             return redirect('success_page') 
+#     else:
+#         form = ContactForm()
+
+#     return render(request, 'contact.html', {'form': form})
+>>>>>>> refs/remotes/origin/main
