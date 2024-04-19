@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 from django import forms
 
 
@@ -11,7 +11,7 @@ class ContactForm(forms.Form):
 from django import forms
 
 
-=======
+
 from django import forms
 
 
@@ -23,4 +23,4 @@ class ContactForm(forms.Form):
     message = forms.CharField(
         widget=forms.Textarea(attrs={"placeholder": "Your message", "class": "form-control" })
     )
->>>>>>> main
+
