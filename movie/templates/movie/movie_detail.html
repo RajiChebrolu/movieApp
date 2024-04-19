@@ -1,11 +1,17 @@
+<<<<<<< HEAD
 
 
 {% extends "base.html" %}
+=======
+{% extends "base.html" %}
+
+>>>>>>> raji/release
 {% block title %}
     Movie Details - {{ movie.title }}
 {% endblock %}
 
 {% block content %}
+<<<<<<< HEAD
     <div class="row">
         <div class="col-md-6 mx-auto">
             <div class="card mb-4">
@@ -24,3 +30,49 @@
         </div>
     </div>
 {% endblock %}
+=======
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-10 mx-auto">
+            <!-- Card with black background -->
+            <div class="card mb-4 bg-dark text-white">
+                <div class="row g-0">
+                    <!-- Image column -->
+                    <div class="col-md-6">
+                        <img src="{{ movie.image.url }}" class="img-fluid w-100" alt="{{ movie.title }}"
+                             style="height: 100%; object-fit: cover;">
+                    </div>
+                    <!-- Text content column -->
+                    <div class="col-md-6 d-flex align-items-center">
+                        <div class="card-body">
+                            <h1 class="card-title">{{ movie.title }}</h1>
+                            <hr>
+                            <p class="card-text"><strong>Description:</strong> {{ movie.description }}</p>
+                            <p class="card-text"><strong>Category:</strong> {{ movie.get_category_display }}</p>
+                            <p class="card-text"><strong>Language:</strong> {{ movie.get_language_display }}</p>
+                            <p class="card-text"><strong>Status:</strong> {{ movie.get_status_display }}</p>
+                            <p class="card-text"><strong>Production Year:</strong> {{ movie.production_of_year }}</p>
+                            <p class="card-text"><strong>Views Count:</strong> {{ movie.views_count }}</p>
+                           
+
+                            {% if user.is_authenticated %}
+                                {% for link in links %}
+                                    {% if link.type == 'W' %}
+                                        <a class="btn btn-primary mt-3" href="{{ link.link }}">Watch Now</a>
+                                    {% elif link.type == 'D' %}
+                                        <a class="btn btn-primary mt-3" href="{{ link.link }}">Download</a>
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                <a href="{% url 'login' %}" class="btn btn-primary mt-3">Log In to Access Links</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+>>>>>>> raji/release

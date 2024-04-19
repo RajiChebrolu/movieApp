@@ -13,6 +13,10 @@ LANGUAGE_CHOICES =(
     ('KR', 'KOREAN'),
     ('HI', 'HINDI'),
     ('SP', 'SPANISh'),
+    ('english', 'ENGLISH'),
+    ('korean', 'KOREAN'),
+    ('hindi', 'HINDI'),
+    ('spanish', 'SPANISh'),
 )
 
 STATUS_CHOICES = (
@@ -30,6 +34,12 @@ class Movie(models.Model):
     production_of_year = models.DateField()
     views_count = models.IntegerField(default=0)
     cast = models.CharField(max_length=100)
+    category = models.CharField(choices=CATEGORY_CHOICES, max_length=10)
+    language = models.CharField(choices=LANGUAGE_CHOICES, max_length=10)
+    status = models.CharField(choices=STATUS_CHOICES, max_length=2) 
+    production_of_year = models.DateField()
+    views_count = models.IntegerField(default=0)
+    cast = models.CharField(max_length=100) 
     
 
 
@@ -47,6 +57,15 @@ class MovieLinks(models.Model):
 
     def __str__(self):
         return self.movie
+
+class MovieLinks(models.Model):
+    movie = models.ForeignKey(Movie, related_name='movie_watch_link', on_delete=models.CASCADE)
+    type = models.CharField(choices=(('D', 'Download Link'), ('W', 'Watch Link')), max_length=1)
+    link = models.URLField()
+
+    def __str__(self):
+        return f"{self.movie.title} - {self.get_type_display()}"
+
 
 class Download_Links(models.Model):
     pass
