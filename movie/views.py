@@ -1,59 +1,3 @@
-from typing import Any
-from django.db.models.base import Model as Model
-from django.db.models.query import QuerySet
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView
-from .models import Movie, MovieLinks
-
-# Create your views here.
-class MovieList(ListView):
-    model = Movie
-    template_name='movie/movie_list.html'
-    paginate_by =2
-
-
-class MovieDetail(DetailView):
-    model = Movie
-    template_name='movie/movie_detail.html'
-
-    def get_object(self):
-        object = super(MovieDetail, self).get_object()
-        object.views_count +=1
-        object.save()
-        return object
-
-    def get_context_data(self, **kwargs):
-        context = super(MovieDetail, self).get_context_data(**kwargs)
-        context['links'] = MovieLinks.objects.filter(movie=self.get_object())
-        return context
-
-
-class MovieCategory(ListView):
-    model = Movie
-    paginate_by =3
-    # changed 1 to 3 and added this line
-    template_name = 'movie/movie_category_list.html'
-
-    def get_queryset(self):
-        category = self.kwargs['category']
-        return Movie.objects.filter(category=self.category)
-
-  
-    def get_context_data(self, **kwargs): 
-        context = super(MovieCategory, self).get_context_data(**kwargs)
-        context['movie_category'] = self.category
-        return context
-        
-        
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView
-from .models import Movie, MovieLinks
-
-
-
-
-
-
 
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -145,8 +89,6 @@ class MovieYear(YearArchiveView):
     print(queryset)
 
 
-<<<<<<< HEAD
-=======
 
 # adding contact:
 
@@ -168,4 +110,3 @@ class MovieYear(YearArchiveView):
 #         form = ContactForm()
 
 #     return render(request, 'contact.html', {'form': form})
->>>>>>> refs/remotes/origin/main

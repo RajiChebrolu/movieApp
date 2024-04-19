@@ -20,17 +20,14 @@ urlpatterns = [
     path('language/<str:language>', MovieLanguage.as_view(), name='movie_language'),
     path('Year/<int:year>/', MovieYear.as_view(), name='movie_year'),
     # path('contact/', contact_view(), name='contact'),
-<<<<<<< HEAD
 
 ]
 
 
-=======
-]
 
 
 
 
->>>>>>> refs/remotes/origin/main
+
 
 
